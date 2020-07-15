@@ -16,4 +16,5 @@
     width: 100px;
     height: 100px;
     border: 10px;
+    background-image: image("/photo/banner-1.png");
 }
