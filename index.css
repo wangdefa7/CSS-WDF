@@ -13,8 +13,6 @@
 .banner2 out{
     background-color:#f40;
     color: #f40;
-    width: 100px;
-    height: 100px;
+    width: 100%;
     border: 10px;
-    background-image: image("/photo/banner-1.png");
 }
