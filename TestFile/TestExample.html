@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- 一次下载多个文件 -->
+<body>
+
+    <button id="a" onclick="javascript:a()"> a</button>
+    <script>
+        function a() {
+            //var a = document.getElementById('a');
+            var url = 'http://localhost/file/exportTxt';
+            download(url);
+            download(url);
+        }
+
+        function download(url) {
+            const iframe = document.createElement("iframe");
+            iframe.style.display = "none"; // 防止影响页面
+            iframe.style.height = 0; // 防止影响页面
+            iframe.src = url;
+            document.body.appendChild(iframe); // 这一行必须，iframe挂在到dom树上才会发请求
+            // 5分钟之后删除（onload方法对于下载链接不起作用，就先抠脚一下吧）
+            setTimeout(() => {
+                iframe.remove();
+            }, 5 * 60 * 1000);
+        }
+
+
+
+        function exportTxt(){
+   var yybh = $("#yybh").text();
+   var channel = $("#channel").text();
+     /*  var url = compileUrl('/cipherManager/exportYysy' +
+        '?yybh=' + yybh +
+        '&channel=' + channel 
+        );
+      var url2 = compileUrl('/cipherManager/exportPtgy' +
+          '?yybh=' + yybh +
+          '&channel=' + channel 
+   );
+      window.open(url);
+      window.open(url2);
+      console.log(url);
+      console.log(url2); */
+      exportYysy(yybh, channel);
+      exportPtgy(yybh, channel);
+  }
+  
+  function exportYysy(yybh, channel){
+   var url = compileUrl('/cipherManager/exportYysy' +
+          '?yybh=' + yybh +
+          '&channel=' + channel 
+   );
+   //window.open(url);
+   download(url);
+  }
+  
+  function exportPtgy(yybh, channel){
+   var url2 = compileUrl('/cipherManager/exportPtgy' +
+          '?yybh=' + yybh +
+          '&channel=' + channel 
+   );
+   //window.open(url2);
+   download(url2)
+  }
+  
+  function download(url) {
+            const iframe = document.createElement("iframe");
+            iframe.style.display = "none"; // 防止影响页面
+            iframe.style.height = 0; // 防止影响页面
+            iframe.src = url;
+            document.body.appendChild(iframe); // 这一行必须，iframe挂在到dom树上才会发请求
+            // 5分钟之后删除（onload方法对于下载链接不起作用，就先抠脚一下吧）
+            setTimeout(() => {
+                iframe.remove();
+            }, 5 * 60 * 1000);
+        }
+    </script>
+</body>
+
+</html>
